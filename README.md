@@ -8,3 +8,5 @@ Future plan: We also plan on implementing a subscription option for the startups
 
 
 # DEMO:
+
+Presentation Link : https://www.canva.com/design/DAEb9D6ZjfY/9MWX0FreiEeGRYra8cSsIg/view?utm_content=DAEb9D6ZjfY&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
