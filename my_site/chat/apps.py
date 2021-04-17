@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class PostIdeasConfig(AppConfig):
-    name = 'post'
+class ChatConfig(AppConfig):
+    name = 'chat'

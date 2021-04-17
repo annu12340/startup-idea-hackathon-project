@@ -1,9 +1,11 @@
-from django.urls import path
-from . import views
-
+from django.urls import path,include
+from .views import *
 urlpatterns = [
-    path('', views.home, name ="home"),
-    path('addIdeas/', views.addPost, name ="addIdeas"),
-    path('addEvents/', views.addEvents, name="addEvents"),
-    path('<int:id>/', views.ParticularPost, name='ParticularPost'),
+
+path('all/', view_all_users_for_chat, name='view_all_users_for_chat' ),
+
+path('inbox/',inbox,name='inbox'),
+path('inbox/<int:reciever_id>',inbox,name='inbox'),
+
+
 ]

@@ -1,48 +1,42 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth import logout
+from django.contrib.auth.models import User
 
-from django.shortcuts import render, redirect
-from .models import PostIdeaModel,EventsIdeaModel
-from .forms import Idea_PostModelForm
+# Create your views here.
+from .models import messageStore
+from django.contrib.auth.decorators import login_required
 
-def home(request):
-    AllPosts = PostIdeaModel.objects.all().order_by('-id')
-    AllEvents = EventsIdeaModel.objects.all().order_by('-id')
-    return render(request, 'post/home.html', {"AllPosts": AllPosts, "AllEvents": AllEvents })
-
-def addPost(request):
-    if (request.POST):
-        ptitle = request.POST.get('title')
-        pdescrip = request.POST.get('description')
-        pimg = request.POST.get('img')
-        progress = request.POST.get('progress')
-        teamsize = request.POST.get('teamsize')
-        invsize = request.POST.get('invsize')
-        fund = request.POST.get('fund')
-        finance = request.POST.get('finance')
-
-        patent = request.POST.get('patent')
-
-        history = request.POST.get('history')
+from django.contrib.auth import get_user_model
 
 
-        P = PostIdeaModel(Title=ptitle, Description=pdescrip, Img=pimg, Progress=progress, CurrentTeamSize=teamsize, InvestorSize=invsize, FundingAmount=fund, FinancialStatus=finance, PatentDetails=patent, History=history )
-        P.save()
+def view_all_users_for_chat(request):
+	user = get_user_model()
+	alluser = user.objects.all()
+	return render(request, 'chat/welcome.html', {'customer':alluser})
 
-    return render(request, "post/addPost.html")
 
-def addEvents(request):
-    if(request.POST):
-        ename=request.POST.get('ename')
-        etype= request.POST.get('typeofevent')
-        edate= request.POST.get('dateofevent')
-        eplace = request.POST.get('place')
-        edescrip= request.POST.get('description')
-        elink = request.POST.get('linktoevent')
-        E = EventsIdeaModel(EventName=ename, EventDate=edate, EventType=etype, EventPlace=eplace, Description=edescrip, EventLink=elink)
-        E.save()
+@login_required
+def index(request):
+	current_user = request.user.username
+	users = User.objects.all().exclude(username=current_user)
+	context = {'users':users}
+	return render(request,'chat/welcome.html', context)
 
-    return render(request, "post/addEvents.html")
 
-def ParticularPost(request,id):
-    print("inside particular q id is", id)
-    individual_post = PostIdeaModel.objects.get(id=id)
-    return render(request,'post/ParticularPost.html', { "post":individual_post})
+@login_required
+def inbox(request,reciever_id=1):
+	if request.method == 'POST':
+		reciever_ins = User.objects.get(id=reciever_id)
+		obj = messageStore.manager.create(msg=request.POST['msg'],sender=request.user,reciever=reciever_ins)
+		
+		msg =  messageStore.manager.get_msg(request.user.id,reciever_id)
+		context={'msg':msg,'reciever_id':reciever_id}
+		return render(request,'chat/inbox.html',context)
+	else :
+		msg =  messageStore.manager.get_msg(request.user.id,reciever_id)
+		alluser = get_user_model().objects.all()
+		context={'msg':msg,'reciever_id':reciever_id,'customer':alluser}
+
+		return render(request,'chat/inbox.html',context)
+	
