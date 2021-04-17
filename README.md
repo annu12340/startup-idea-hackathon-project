@@ -10,3 +10,14 @@ Future plan: We also plan on implementing a subscription option for the startups
 # DEMO:
 
 Presentation Link : https://www.canva.com/design/DAEb9D6ZjfY/9MWX0FreiEeGRYra8cSsIg/view?utm_content=DAEb9D6ZjfY&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+
+### Register Screen
+![Screen Shot 2021-04-18 at 4 04 07 AM](https://user-images.githubusercontent.com/45137335/115128520-ec009180-9ffb-11eb-9f2f-597c82e7d3a4.png)
+
+### Home Screen
+![Screen Shot 2021-04-18 at 4 05 33 AM](https://user-images.githubusercontent.com/45137335/115128518-eb67fb00-9ffb-11eb-88b6-ae6cee805141.png)
+
+### Posting events and ideas
+
+![Screen Shot 2021-04-17 at 11 14 50 PM](https://user-images.githubusercontent.com/45137335/115128512-e905a100-9ffb-11eb-9e13-8930591f0cbe.png)
+![Screen Shot 2021-04-18 at 4 05 53 AM](https://user-images.githubusercontent.com/45137335/115128517-eacf6480-9ffb-11eb-8907-81a9d36a0d44.png)
